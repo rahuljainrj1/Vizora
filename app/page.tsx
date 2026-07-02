@@ -4,7 +4,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpenCheck,
-  Car,
   Check,
   CircleHelp,
   ClipboardList,
@@ -13,6 +12,7 @@ import {
   Layers,
   MonitorSmartphone,
   QrCode,
+  Store,
   Smartphone,
   Upload,
   Users,
@@ -25,18 +25,11 @@ export const metadata: Metadata = {
     "Turn your showroom into a digital catalogue experience for windows, railings, interiors, and architectural materials.",
 };
 
-const showroomTypes = [
-  "Windows",
-  "Railings",
-  "Interiors",
-  "Architectural materials",
-];
-
 const painPoints: IconListItem[] = [
   { Icon: FileText, title: "Static PDF catalogues" },
   { Icon: ImageIcon, title: "Endless WhatsApp images" },
   { Icon: Users, title: "Family discussions across screenshots" },
-  { Icon: Car, title: "Multiple showroom visits" },
+  { Icon: Store, title: "Multiple showroom visits" },
   { Icon: CircleHelp, title: "Uncertainty after selection" },
 ];
 
@@ -89,11 +82,11 @@ type IconListItem = {
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-canvas text-ink">
-      <header className="sticky top-0 z-50 border-b border-hairline bg-surface-soft/95 backdrop-blur">
-        <div className="mx-auto flex h-16 max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
+    <main className="min-h-screen bg-canvas pt-[74px] text-ink">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-hairline bg-surface-soft/95 backdrop-blur">
+        <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between px-4 sm:px-6 lg:px-10">
           <Link href="/" className="flex items-center gap-3" aria-label="Vizora home">
-            <span className="grid h-10 w-10 place-items-center rounded-[2px] bg-ink font-serif text-base font-semibold text-on-primary">
+            <span className="grid h-10 w-10 place-items-center bg-ink font-serif text-base font-semibold text-on-primary">
               V
             </span>
             <span className="leading-none">
@@ -104,9 +97,6 @@ export default function HomePage() {
             </span>
           </Link>
           <nav className="hidden items-center gap-6 text-[13px] font-semibold text-body md:flex">
-            <a className="transition-colors hover:text-ink" href="#problem">
-              Problem
-            </a>
             <a className="transition-colors hover:text-ink" href="#how-it-works">
               How it works
             </a>
@@ -116,7 +106,7 @@ export default function HomePage() {
           </nav>
           <Link
             href="/catalog/create-catalog"
-            className="inline-flex h-11 items-center justify-center gap-2 rounded-[4px] border border-ink bg-ink px-4 text-[13px] font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
+            className="inline-flex h-11 items-center justify-center gap-2 border border-ink bg-ink px-4 text-[13px] font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
           >
             Start
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -125,53 +115,42 @@ export default function HomePage() {
         <div className="vizora-stripe h-0.5" />
       </header>
 
-      <section className="relative isolate overflow-hidden border-b border-hairline bg-ink text-on-primary">
-        <Image
-          src="/vizora-showroom-catalogue.png"
-          alt="A showroom with window, railing, material samples, and a mobile catalogue interface"
-          fill
-          preload
-          sizes="100vw"
-          className="absolute inset-0 -z-20 object-cover object-center"
-        />
-        <div className="absolute inset-0 -z-10 bg-[rgba(40,44,63,0.68)]" />
-        <div className="absolute inset-y-0 left-0 -z-10 w-full bg-[linear-gradient(90deg,rgba(40,44,63,0.94),rgba(40,44,63,0.72)_46%,rgba(40,44,63,0.28))]" />
-
-        <div className="mx-auto grid min-h-[calc(100svh-220px)] max-w-[1440px] items-center px-4 py-8 sm:px-6 sm:py-12 lg:px-10 lg:py-14">
-          <div className="max-w-4xl">
-            <p className="uppercase-label mb-4 text-white/72">Vizora</p>
-            <h1 className="editorial-title max-w-4xl text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
-              Turn Your Showroom Into a Digital Experience
+      <section className="border-b border-hairline bg-surface-soft">
+        <div className="mx-auto grid max-w-[1440px] items-center gap-10 px-4 py-10 sm:px-6 sm:py-12 lg:min-h-[560px] lg:grid-cols-[0.82fr_1.18fr] lg:px-10">
+          <div className="max-w-2xl">
+            <p className="uppercase-label mb-4 text-muted">Vizora</p>
+            <h1 className="editorial-title text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
+              Digital catalogues for showroom sales
             </h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-white/88 sm:text-xl">
-              Stop sending PDFs and scattered WhatsApp images.
+            <p className="mt-5 max-w-xl text-[15px] leading-7 text-body sm:text-lg sm:leading-8">
+              Turn product photos into a clean, shareable catalogue customers can
+              browse, shortlist, and revisit.
             </p>
-            <p className="mt-4 max-w-2xl text-[15px] leading-7 text-white/78 sm:text-base">
-              Create an interactive product catalogue that helps customers
-              explore, compare, and finalize designs with confidence.
-            </p>
-            <div className="mt-6">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-white/64">
-                For
-              </p>
-              <ul className="flex flex-wrap gap-2">
-                {showroomTypes.map((type) => (
-                  <li
-                    key={type}
-                    className="border border-white/22 bg-white/10 px-3 py-2 text-sm font-semibold text-white"
-                  >
-                    {type}
-                  </li>
-                ))}
-              </ul>
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/catalog/create-catalog"
+                className="inline-flex h-12 items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
+              >
+                Create catalogue
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+              <a
+                href="#how-it-works"
+                className="inline-flex h-12 items-center justify-center border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
+              >
+                See how it works
+              </a>
             </div>
-            <Link
-              href="/catalog/create-catalog"
-              className="mt-7 inline-flex h-12 items-center justify-center gap-2 rounded-[4px] border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
-            >
-              Create Your Digital Catalogue
-              <ArrowRight className="h-4 w-4" aria-hidden="true" />
-            </Link>
+          </div>
+          <div className="relative min-h-[320px] overflow-hidden border border-hairline bg-surface-card sm:min-h-[420px] lg:min-h-[480px]">
+            <Image
+              src="/vizora-showroom-catalogue.png"
+              alt="A bright showroom catalogue interface for windows, railings, and material products"
+              fill
+              preload
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </section>
