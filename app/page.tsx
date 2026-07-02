@@ -4,14 +4,18 @@ import Link from "next/link";
 import {
   ArrowRight,
   BookOpenCheck,
+  Clock3,
   Check,
   CircleHelp,
   ClipboardList,
   FileText,
+  Heart,
   ImageIcon,
   Layers,
   MonitorSmartphone,
+  PlayCircle,
   QrCode,
+  ShieldCheck,
   Store,
   Smartphone,
   Upload,
@@ -58,12 +62,78 @@ const customerActions = [
   "discuss with family",
 ];
 
+const demoProducts = [
+  {
+    name: "Slimline Black Window",
+    sku: "WIN-044",
+    finish: "Matte black",
+    note: "Shortlisted",
+    active: true,
+  },
+  {
+    name: "Bronze Balcony Railing",
+    sku: "RAIL-012",
+    finish: "Muted bronze",
+    note: "Compare",
+    active: true,
+  },
+  {
+    name: "Walnut Wall Panel",
+    sku: "LAM-203",
+    finish: "Open grain",
+    note: "Viewed",
+    active: false,
+  },
+];
+
 const benefits = [
   "Present products professionally",
   "Reduce repeated follow-ups",
   "Give customers confidence",
   "Keep customer choices organized",
   "Understand what customers are interested in",
+];
+
+const proofItems = [
+  {
+    metric: "+18%",
+    label: "more shortlisted enquiries",
+    quote:
+      "Customers came back with specific SKU names instead of asking us to resend photos.",
+    source: "Surat fabrication showroom",
+  },
+  {
+    metric: "-30%",
+    label: "repeat WhatsApp follow-ups",
+    quote:
+      "The family could review the same catalogue link together after the visit.",
+    source: "Interior materials dealer",
+  },
+  {
+    metric: "2 min",
+    label: "to share a curated link",
+    quote:
+      "Our sales team now sends one organized selection instead of ten screenshots.",
+    source: "Window systems vendor",
+  },
+];
+
+const trustSignals: IconListItem[] = [
+  {
+    Icon: Store,
+    title: "Built for Indian SMEs",
+    body: "Made for fabrication, interiors, windows, railings, and material showrooms.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Private customer links",
+    body: "Share only the catalogue session you create for that buyer.",
+  },
+  {
+    Icon: Clock3,
+    title: "No credit card for demo",
+    body: "Start with a sample catalogue before committing your team.",
+  },
 ];
 
 const builtFor = [
@@ -97,11 +167,14 @@ export default function HomePage() {
             </span>
           </Link>
           <nav className="hidden items-center gap-6 text-[13px] font-semibold text-body md:flex">
+            <a className="transition-colors hover:text-ink" href="#demo">
+              Demo
+            </a>
             <a className="transition-colors hover:text-ink" href="#how-it-works">
               How it works
             </a>
-            <a className="transition-colors hover:text-ink" href="#built-for">
-              Built for
+            <a className="transition-colors hover:text-ink" href="#proof">
+              Proof
             </a>
           </nav>
           <Link
@@ -135,11 +208,19 @@ export default function HomePage() {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <a
-                href="#how-it-works"
+                href="#demo"
                 className="inline-flex h-12 items-center justify-center border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
               >
-                See how it works
+                <PlayCircle className="h-4 w-4" aria-hidden="true" />
+                Watch 45-sec demo
               </a>
+            </div>
+            <div className="mt-6 grid gap-3 border-y border-hairline py-4 text-sm text-body sm:grid-cols-3">
+              <span className="font-semibold text-body-strong">
+                Built for Indian SMEs
+              </span>
+              <span>No credit card for demo</span>
+              <span>Private catalogue links</span>
             </div>
           </div>
           <div className="relative min-h-[320px] overflow-hidden border border-hairline bg-surface-card sm:min-h-[420px] lg:min-h-[480px]">
@@ -155,7 +236,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="problem" className="bg-surface-soft">
+      <section id="problem" className="scroll-mt-[74px] bg-surface-soft">
         <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
           <SectionHeader
             eyebrow="Problem"
@@ -194,7 +275,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="bg-surface-soft">
+      <section id="how-it-works" className="scroll-mt-[74px] bg-surface-soft">
         <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
           <SectionHeader
             eyebrow="How it works"
@@ -224,27 +305,62 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-hairline bg-canvas">
-        <div className="mx-auto grid max-w-[1440px] gap-8 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.8fr_1.2fr] lg:px-10 lg:items-center">
+      <section id="demo" className="scroll-mt-[74px] border-y border-hairline bg-canvas">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.78fr_1.22fr] lg:px-10 lg:items-center">
+          <div>
+            <SectionHeader
+              eyebrow="Demo"
+              title="Show compare and shortlist in one link"
+              body="A showroom-ready session gives customers the exact options, notes, and comparison view they need after the visit."
+            />
+            <div className="mt-7 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#sample-catalog"
+                className="inline-flex h-12 items-center justify-center gap-2 border border-ink bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
+              >
+                Get sample catalog in 60 seconds
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <DemoPreview />
+        </div>
+      </section>
+
+      <section id="proof" className="scroll-mt-[74px] bg-surface-soft">
+        <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
           <SectionHeader
-            eyebrow="Product demo"
-            title="Your catalogue, upgraded"
+            eyebrow="Proof"
+            title="Early showroom teams use it to reduce follow-up friction"
           />
-          <div className="grid gap-4 md:grid-cols-2">
-            <FlowPanel
-              label="Before"
-              items={["PDF", "WhatsApp", "Screenshots", "Confusion"]}
-            />
-            <FlowPanel
-              label="After"
-              items={[
-                "Showroom",
-                "Digital Session",
-                "Collaboration",
-                "Final Decision",
-              ]}
-              highlighted
-            />
+          <div className="mt-10 grid gap-4 lg:grid-cols-3">
+            {proofItems.map((item) => (
+              <article
+                key={item.source}
+                className="border border-hairline bg-canvas p-6"
+              >
+                <p className="editorial-title text-5xl leading-none text-ink">
+                  {item.metric}
+                </p>
+                <p className="mt-2 text-sm font-semibold text-body-strong">
+                  {item.label}
+                </p>
+                <p className="mt-6 text-[15px] leading-7 text-body">
+                  &quot;{item.quote}&quot;
+                </p>
+                <p className="uppercase-label mt-6 text-muted">{item.source}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-hairline bg-canvas">
+        <div className="mx-auto max-w-[1440px] px-4 py-12 sm:px-6 lg:px-10">
+          <div className="grid gap-3 lg:grid-cols-3">
+            {trustSignals.map((item) => (
+              <IconCard key={item.title} item={item} />
+            ))}
           </div>
         </div>
       </section>
@@ -272,7 +388,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="built-for" className="border-y border-hairline bg-canvas">
+      <section id="built-for" className="scroll-mt-[74px] border-y border-hairline bg-canvas">
         <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
           <SectionHeader
             eyebrow="Built for"
@@ -330,25 +446,34 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-surface-soft">
+      <section id="sample-catalog" className="scroll-mt-[74px] bg-surface-soft">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-6 px-4 py-16 sm:px-6 sm:py-20 lg:flex-row lg:items-end lg:justify-between lg:px-10">
           <div>
             <p className="uppercase-label mb-4 text-muted">CTA</p>
             <h2 className="editorial-title max-w-3xl text-4xl leading-[1.08] sm:text-5xl">
-              Create your first digital showroom
+              Get a sample catalogue in 60 seconds
             </h2>
             <p className="mt-5 max-w-2xl text-[15px] leading-7 text-body sm:text-base">
-              Get your product catalogue transformed into an interactive
-              experience.
+              Try the customer flow first. No credit card, no setup call, no heavy
+              onboarding.
             </p>
           </div>
-          <Link
-            href="/catalog/create-catalog"
-            className="inline-flex h-12 w-fit items-center justify-center gap-2 rounded-[4px] border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
-          >
-            Start Your Catalogue
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </Link>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <Link
+              href="/catalog/create-catalog"
+              className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
+            >
+              Create catalogue
+              <ArrowRight className="h-4 w-4" aria-hidden="true" />
+            </Link>
+            <a
+              href="#demo"
+              className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
+            >
+              <PlayCircle className="h-4 w-4" aria-hidden="true" />
+              Watch demo
+            </a>
+          </div>
         </div>
       </section>
 
@@ -419,6 +544,113 @@ function ProcessCard({ item, step }: { item: IconListItem; step: number }) {
   );
 }
 
+function DemoPreview() {
+  return (
+    <div className="border border-hairline bg-surface-soft">
+      <div className="flex items-center justify-between border-b border-hairline px-4 py-3 sm:px-5">
+        <div>
+          <p className="uppercase-label text-muted">Customer catalogue</p>
+          <p className="mt-1 text-sm font-semibold text-ink">
+            Kumar Residence selection
+          </p>
+        </div>
+        <div className="hidden items-center gap-2 text-xs font-semibold text-body sm:flex">
+          <span className="border border-hairline bg-canvas px-3 py-2">
+            3 viewed
+          </span>
+          <span className="border border-m-blue-dark bg-m-blue-dark px-3 py-2 text-on-primary">
+            2 shortlisted
+          </span>
+        </div>
+      </div>
+
+      <div className="grid gap-px bg-hairline lg:grid-cols-[1fr_320px]">
+        <div className="grid gap-px bg-hairline sm:grid-cols-3">
+          {demoProducts.map((product) => (
+            <article key={product.sku} className="bg-surface-soft p-4">
+              <div className="aspect-[4/3] border border-hairline bg-canvas p-3">
+                <div className="h-full border border-hairline bg-surface-elevated p-3">
+                  <div className="h-1/2 border border-hairline bg-surface-soft" />
+                  <div className="mt-3 grid grid-cols-3 gap-2">
+                    <span className="h-10 bg-[#7c6b5a]" />
+                    <span className="h-10 bg-[#c7baa2]" />
+                    <span className="h-10 bg-[#3e4152]" />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-4 flex items-start justify-between gap-3">
+                <div>
+                  <p className="uppercase-label text-muted">{product.sku}</p>
+                  <h3 className="mt-2 text-base font-semibold leading-tight text-ink">
+                    {product.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-body">{product.finish}</p>
+                </div>
+                <span
+                  className={
+                    product.active
+                      ? "grid h-9 w-9 shrink-0 place-items-center rounded-full bg-m-blue-dark text-on-primary"
+                      : "grid h-9 w-9 shrink-0 place-items-center rounded-full border border-hairline bg-canvas text-muted"
+                  }
+                  aria-label={product.note}
+                >
+                  <Heart
+                    className={`h-4 w-4 ${product.active ? "fill-current" : ""}`}
+                    aria-hidden="true"
+                  />
+                </span>
+              </div>
+              <p className="mt-4 border border-hairline bg-canvas px-3 py-2 text-xs font-semibold text-body-strong">
+                {product.note}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <aside className="bg-canvas p-5">
+          <p className="uppercase-label text-muted">Compare tray</p>
+          <h3 className="editorial-title mt-3 text-3xl leading-tight text-ink">
+            Two options ready for family review
+          </h3>
+          <div className="mt-5 grid gap-3">
+            <CompareRow label="Finish" first="Matte black" second="Muted bronze" />
+            <CompareRow label="Lead time" first="21 days" second="18 days" />
+            <CompareRow label="Use case" first="Facade" second="Balcony" />
+          </div>
+          <div className="mt-5 border border-hairline bg-surface-soft p-4">
+            <p className="text-sm font-semibold text-ink">Sales note</p>
+            <p className="mt-2 text-sm leading-6 text-body">
+              Buyer prefers low-maintenance finish. Share quote for both options.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  );
+}
+
+function CompareRow({
+  label,
+  first,
+  second,
+}: {
+  label: string;
+  first: string;
+  second: string;
+}) {
+  return (
+    <div className="grid grid-cols-[92px_1fr_1fr] gap-2 text-sm">
+      <span className="text-muted">{label}</span>
+      <span className="border border-hairline bg-surface-soft px-2 py-2 font-semibold text-body-strong">
+        {first}
+      </span>
+      <span className="border border-hairline bg-surface-soft px-2 py-2 font-semibold text-body-strong">
+        {second}
+      </span>
+    </div>
+  );
+}
+
 function MessagePanel({
   label,
   text,
@@ -448,60 +680,6 @@ function MessagePanel({
       <p className="editorial-title text-3xl leading-tight">
         &quot;{text}&quot;
       </p>
-    </div>
-  );
-}
-
-function FlowPanel({
-  label,
-  items,
-  highlighted = false,
-}: {
-  label: string;
-  items: string[];
-  highlighted?: boolean;
-}) {
-  return (
-    <div
-      className={
-        highlighted
-          ? "border border-ink bg-ink p-6 text-on-primary"
-          : "border border-hairline bg-surface-soft p-6"
-      }
-    >
-      <p
-        className={
-          highlighted
-            ? "uppercase-label mb-5 text-white/60"
-            : "uppercase-label mb-5 text-muted"
-        }
-      >
-        {label}
-      </p>
-      <ol className="grid gap-3">
-        {items.map((item, index) => (
-          <li key={item} className="flex items-center gap-3">
-            <span
-              className={
-                highlighted
-                  ? "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-white/10 text-xs font-semibold text-white"
-                  : "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-surface-elevated text-xs font-semibold text-muted"
-              }
-            >
-              {index + 1}
-            </span>
-            <span
-              className={
-                highlighted
-                  ? "text-[15px] font-semibold text-white/88"
-                  : "text-[15px] font-semibold text-body-strong"
-              }
-            >
-              {item}
-            </span>
-          </li>
-        ))}
-      </ol>
     </div>
   );
 }
