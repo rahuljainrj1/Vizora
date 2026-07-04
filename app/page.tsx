@@ -6,11 +6,8 @@ import {
   BookOpenCheck,
   Clock3,
   Check,
-  CircleHelp,
   ClipboardList,
-  FileText,
   Heart,
-  ImageIcon,
   Layers,
   MonitorSmartphone,
   PlayCircle,
@@ -19,47 +16,61 @@ import {
   Store,
   Smartphone,
   Upload,
-  Users,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Interactive Catalogues for Modern Showrooms",
   description:
-    "Turn your showroom into a digital catalogue experience for windows, railings, interiors, and architectural materials.",
+    "Turn product photos into a shareable link customers can browse, compare, and revisit without the WhatsApp chaos.",
 };
 
-const painPoints: IconListItem[] = [
-  { Icon: FileText, title: "Static PDF catalogues" },
-  { Icon: ImageIcon, title: "Endless WhatsApp images" },
-  { Icon: Users, title: "Family discussions across screenshots" },
-  { Icon: Store, title: "Multiple showroom visits" },
-  { Icon: CircleHelp, title: "Uncertainty after selection" },
-];
-
-const howItWorks: IconListItem[] = [
+const workflowSteps: WorkflowStep[] = [
   {
     Icon: Upload,
-    title: "Upload Your Products",
-    body: "Add your product images, materials, finishes, categories, and specifications. Vizora organizes your catalogue.",
-  },
-  {
-    Icon: QrCode,
-    title: "Share With Customers",
-    body: "Generate a simple link or QR code. Customers can explore products during or after visiting your showroom.",
+    eyebrow: "2 min setup",
+    title: "Upload showroom products",
+    body: "Add product images, finish details, categories, and basic specifications once.",
+    status: "Catalogue base ready",
+    previewTitle: "Product intake",
+    previewItems: ["Images", "SKU", "Material", "Finish"],
   },
   {
     Icon: BookOpenCheck,
-    title: "Help Them Decide Faster",
-    body: "Customers can compare options, shortlist designs, revisit choices, and discuss with family.",
+    eyebrow: "Guided curation",
+    title: "Build a customer selection",
+    body: "Pick the exact SKUs for one buyer instead of sharing the full library.",
+    status: "Selection prepared",
+    previewTitle: "Curated set",
+    previewItems: ["Window", "Railing", "Panel"],
   },
-];
-
-const customerActions = [
-  "compare options",
-  "shortlist designs",
-  "revisit choices",
-  "discuss with family",
+  {
+    Icon: QrCode,
+    eyebrow: "1-click share",
+    title: "Send a private link",
+    body: "Share the catalogue by WhatsApp or QR code while the visit is still fresh.",
+    status: "Ready for WhatsApp",
+    previewTitle: "Share link",
+    previewItems: ["WhatsApp", "QR", "Copy link"],
+  },
+  {
+    Icon: Heart,
+    eyebrow: "Live shortlist",
+    title: "Customer compares and saves",
+    body: "Buyers shortlist options, compare finishes, and revisit choices with family.",
+    status: "Buying signal captured",
+    previewTitle: "Customer actions",
+    previewItems: ["Viewed", "Shortlisted", "Compared"],
+  },
+  {
+    Icon: ClipboardList,
+    eyebrow: "Sales follow-up",
+    title: "Quote with context",
+    body: "Your team follows up with the products, notes, and preferences already organized.",
+    status: "Quote-ready",
+    previewTitle: "Next action",
+    previewItems: ["Call buyer", "Share quote", "Close loop"],
+  },
 ];
 
 const demoProducts = [
@@ -94,30 +105,6 @@ const benefits = [
   "Understand what customers are interested in",
 ];
 
-const proofItems = [
-  {
-    metric: "+18%",
-    label: "more shortlisted enquiries",
-    quote:
-      "Customers came back with specific SKU names instead of asking us to resend photos.",
-    source: "Surat fabrication showroom",
-  },
-  {
-    metric: "-30%",
-    label: "repeat WhatsApp follow-ups",
-    quote:
-      "The family could review the same catalogue link together after the visit.",
-    source: "Interior materials dealer",
-  },
-  {
-    metric: "2 min",
-    label: "to share a curated link",
-    quote:
-      "Our sales team now sends one organized selection instead of ten screenshots.",
-    source: "Window systems vendor",
-  },
-];
-
 const trustSignals: IconListItem[] = [
   {
     Icon: Store,
@@ -136,18 +123,47 @@ const trustSignals: IconListItem[] = [
   },
 ];
 
-const builtFor = [
-  "Windows",
-  "Railings",
-  "Glass Works",
-  "Interior Materials",
-  "Custom Manufacturing",
+const builtForDetails = [
+  {
+    title: "Windows and facade systems",
+    fit: "Best for made-to-measure SKUs",
+    body: "Compare frame finish, glass type, module size, and lead time without losing the buyer in a PDF.",
+    tags: ["Windows", "Facades", "Glass"],
+  },
+  {
+    title: "Railings and metal fabrication",
+    fit: "Best for visual approvals",
+    body: "Show railing profiles, finishes, installation notes, and alternates in one customer-ready session.",
+    tags: ["Railings", "Staircases", "Balconies"],
+  },
+  {
+    title: "Interior materials dealers",
+    fit: "Best for family shortlists",
+    body: "Help buyers revisit laminates, panels, tiles, and hardware options after the showroom visit.",
+    tags: ["Laminates", "Panels", "Tiles"],
+  },
+  {
+    title: "Custom manufacturing teams",
+    fit: "Best for quote handoff",
+    body: "Keep product context, customer preferences, and quote-ready notes together for the sales team.",
+    tags: ["Custom sizes", "Notes", "Quotes"],
+  },
 ];
 
 type IconListItem = {
   Icon: LucideIcon;
   title: string;
   body?: string;
+};
+
+type WorkflowStep = {
+  Icon: LucideIcon;
+  eyebrow: string;
+  title: string;
+  body: string;
+  status: string;
+  previewTitle: string;
+  previewItems: string[];
 };
 
 export default function HomePage() {
@@ -173,15 +189,15 @@ export default function HomePage() {
             <a className="transition-colors hover:text-ink" href="#how-it-works">
               How it works
             </a>
-            <a className="transition-colors hover:text-ink" href="#proof">
-              Proof
+            <a className="transition-colors hover:text-ink" href="#honesty">
+              Early access
             </a>
           </nav>
           <Link
             href="/catalog/create-catalog"
             className="inline-flex h-11 items-center justify-center gap-2 border border-ink bg-ink px-4 text-[13px] font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
           >
-            Start
+            Join first 10
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Link>
         </div>
@@ -193,23 +209,23 @@ export default function HomePage() {
           <div className="max-w-2xl">
             <p className="uppercase-label mb-4 text-muted">Vizora</p>
             <h1 className="editorial-title text-4xl leading-[1.08] sm:text-5xl lg:text-6xl">
-              Digital catalogues for showroom sales
+              Digital catalogues for showroom sales.
             </h1>
             <p className="mt-5 max-w-xl text-[15px] leading-7 text-body sm:text-lg sm:leading-8">
-              Turn product photos into a clean, shareable catalogue customers can
-              browse, shortlist, and revisit.
+              Turn product photos into a shareable link customers can browse,
+              compare, and revisit — without the WhatsApp chaos.
             </p>
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/catalog/create-catalog"
                 className="inline-flex h-12 items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
               >
-                Create catalogue
+                Join the first 10 vendors
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <a
                 href="#demo"
-                className="inline-flex h-12 items-center justify-center border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
+                className="inline-flex h-12 items-center justify-center gap-2 border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
               >
                 <PlayCircle className="h-4 w-4" aria-hidden="true" />
                 Watch 45-sec demo
@@ -217,10 +233,10 @@ export default function HomePage() {
             </div>
             <div className="mt-6 grid gap-3 border-y border-hairline py-4 text-sm text-body sm:grid-cols-3">
               <span className="font-semibold text-body-strong">
-                Built for Indian SMEs
+                Early access
               </span>
-              <span>No credit card for demo</span>
-              <span>Private catalogue links</span>
+              <span>No credit card</span>
+              <span>Built with first vendors</span>
             </div>
           </div>
           <div className="relative min-h-[320px] overflow-hidden border border-hairline bg-surface-card sm:min-h-[420px] lg:min-h-[480px]">
@@ -237,20 +253,27 @@ export default function HomePage() {
       </section>
 
       <section id="problem" className="scroll-mt-[74px] bg-surface-soft">
-        <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
-          <SectionHeader
-            eyebrow="Problem"
-            title="Selling designs is still stuck in the past"
-            body="Customers don't buy because they saw a product. They buy when they feel confident about the decision."
-          />
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {painPoints.map((item) => (
-              <IconCard key={item.title} item={item} />
-            ))}
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.82fr_1.18fr] lg:px-10 lg:items-start">
+          <div>
+            <p className="uppercase-label mb-4 text-muted">Problem</p>
+            <h2 className="editorial-title max-w-3xl text-4xl leading-[1.08] sm:text-5xl">
+              You already know this feeling.
+            </h2>
           </div>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-body-strong">
-            High-value design decisions need a better experience.
-          </p>
+          <div className="border border-hairline bg-canvas p-6 sm:p-8">
+            <div className="grid gap-5 text-[15px] leading-7 text-body sm:text-base sm:leading-8">
+              <p>
+                A customer spends an hour in your showroom. They&apos;re interested.
+                They leave to &quot;discuss with family.&quot; You send photos. They
+                send screenshots. Someone sees a different shade on their phone.
+                The thread dies. The sale doesn&apos;t close.
+              </p>
+              <p className="font-semibold text-body-strong">
+                Nothing went wrong. The workflow just wasn&apos;t built for this
+                kind of decision.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -277,31 +300,35 @@ export default function HomePage() {
 
       <section id="how-it-works" className="scroll-mt-[74px] bg-surface-soft">
         <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
-          <SectionHeader
-            eyebrow="How it works"
-            title="From upload to confident customer decisions"
-          />
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {howItWorks.map((item, index) => (
-              <ProcessCard key={item.title} item={item} step={index + 1} />
-            ))}
-          </div>
-          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {customerActions.map((action) => (
-              <div
-                key={action}
-                className="flex items-center gap-3 border border-hairline bg-canvas p-4"
-              >
-                <Check className="h-5 w-5 text-success" aria-hidden="true" />
-                <span className="text-sm font-semibold text-body-strong">
-                  {action}
-                </span>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <SectionHeader
+              eyebrow="For showroom teams · How it works"
+              title="A five-step sales flow from product upload to quote-ready follow-up"
+              body="Each step gives the sales team a clear action, visible status, and customer decision surface."
+            />
+            <div className="border border-hairline bg-canvas p-5">
+              <p className="uppercase-label text-muted">Workflow summary</p>
+              <div className="mt-4 grid gap-px bg-hairline sm:grid-cols-3">
+                <div className="bg-surface-soft p-4">
+                  <p className="text-3xl font-semibold text-ink">01</p>
+                  <p className="mt-2 text-sm text-body">Catalogue setup</p>
+                </div>
+                <div className="bg-surface-soft p-4">
+                  <p className="text-3xl font-semibold text-ink">02</p>
+                  <p className="mt-2 text-sm text-body">Customer session</p>
+                </div>
+                <div className="bg-surface-soft p-4">
+                  <p className="text-3xl font-semibold text-ink">03</p>
+                  <p className="mt-2 text-sm text-body">Quote follow-up</p>
+                </div>
               </div>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-4">
+            {workflowSteps.map((step, index) => (
+              <WorkflowStepCard key={step.title} step={step} index={index} />
             ))}
           </div>
-          <p className="mt-8 text-xl font-semibold text-ink">
-            Less confusion. Better decisions.
-          </p>
         </div>
       </section>
 
@@ -327,30 +354,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="proof" className="scroll-mt-[74px] bg-surface-soft">
-        <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
-          <SectionHeader
-            eyebrow="Proof"
-            title="Early showroom teams use it to reduce follow-up friction"
-          />
-          <div className="mt-10 grid gap-4 lg:grid-cols-3">
-            {proofItems.map((item) => (
-              <article
-                key={item.source}
-                className="border border-hairline bg-canvas p-6"
-              >
-                <p className="editorial-title text-5xl leading-none text-ink">
-                  {item.metric}
+      <section id="honesty" className="scroll-mt-[74px] bg-surface-soft">
+        <div className="mx-auto grid max-w-[1440px] gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.82fr_1.18fr] lg:px-10">
+          <div>
+            <p className="uppercase-label mb-4 text-muted">Honesty section</p>
+            <h2 className="editorial-title max-w-3xl text-4xl leading-[1.08] sm:text-5xl">
+              Why we built this — and where we actually are
+            </h2>
+          </div>
+          <div className="grid gap-4">
+            <article className="border border-hairline bg-canvas p-6 sm:p-8">
+              <div className="grid gap-5 text-[15px] leading-7 text-body sm:text-base sm:leading-8">
+                <p>
+                  This started with a friend who runs a window fabrication business.
+                  He was losing post-visit sales to WhatsApp confusion and asked if
+                  there was a better way to share his catalogue.
                 </p>
-                <p className="mt-2 text-sm font-semibold text-body-strong">
-                  {item.label}
+                <p>
+                  Then we remembered our own experience — selecting a laminate,
+                  photographing it, sending it to family, and watching the color
+                  look completely wrong on their screen. The purchase still
+                  happened. But the confidence never arrived.
                 </p>
-                <p className="mt-6 text-[15px] leading-7 text-body">
-                  &quot;{item.quote}&quot;
+                <p className="font-semibold text-body-strong">
+                  We&apos;re building the tool we both needed.
                 </p>
-                <p className="uppercase-label mt-6 text-muted">{item.source}</p>
-              </article>
-            ))}
+              </div>
+            </article>
+            <article className="border border-ink bg-ink p-6 text-on-primary sm:p-8">
+              <p className="uppercase-label text-white/58">Early access</p>
+              <p className="mt-5 text-[15px] leading-7 text-white/78 sm:text-base sm:leading-8">
+                Vizora is in early access. We don&apos;t have a hundred customers.
+                We have a working product, a real problem, and we&apos;re looking
+                for ten fabrication and interior vendors who want to be the first
+                batch — and help us build this right.
+              </p>
+              <p className="mt-6 text-xl font-semibold text-white">
+                If that&apos;s you, we want to talk.
+              </p>
+            </article>
           </div>
         </div>
       </section>
@@ -390,20 +432,30 @@ export default function HomePage() {
 
       <section id="built-for" className="scroll-mt-[74px] border-y border-hairline bg-canvas">
         <div className="mx-auto max-w-[1440px] px-4 py-16 sm:px-6 sm:py-20 lg:px-10">
-          <SectionHeader
-            eyebrow="Built for"
-            title="Fabrication Businesses"
-            body="Where every customer decision matters."
-          />
-          <div className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {builtFor.map((item) => (
-              <div
-                key={item}
-                className="border border-hairline bg-surface-soft p-5"
-              >
-                <Layers className="mb-5 h-5 w-5 text-m-blue-dark" aria-hidden="true" />
-                <p className="text-base font-semibold text-ink">{item}</p>
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <SectionHeader
+              eyebrow="Built for"
+              title="Indian showroom categories where visual decisions take time"
+              body="For businesses where customers need to compare finishes, review choices with family, and return with quote-ready preferences."
+            />
+            <div className="border border-hairline bg-surface-soft p-5">
+              <p className="uppercase-label text-muted">Common workflow</p>
+              <div className="mt-4 flex flex-wrap gap-2 text-sm font-semibold text-body-strong">
+                <span className="border border-hairline bg-canvas px-3 py-2">
+                  Show options
+                </span>
+                <span className="border border-hairline bg-canvas px-3 py-2">
+                  Shortlist with family
+                </span>
+                <span className="border border-hairline bg-canvas px-3 py-2">
+                  Quote selected SKUs
+                </span>
               </div>
+            </div>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {builtForDetails.map((item) => (
+              <BuiltForCard key={item.title} item={item} />
             ))}
           </div>
         </div>
@@ -451,11 +503,12 @@ export default function HomePage() {
           <div>
             <p className="uppercase-label mb-4 text-muted">CTA</p>
             <h2 className="editorial-title max-w-3xl text-4xl leading-[1.08] sm:text-5xl">
-              Get a sample catalogue in 60 seconds
+              Join the first 10 vendors.
             </h2>
             <p className="mt-5 max-w-2xl text-[15px] leading-7 text-body sm:text-base">
-              Try the customer flow first. No credit card, no setup call, no heavy
-              onboarding.
+              No credit card. No pitch call. Just send us one WhatsApp thread from
+              a recent customer follow-up and we&apos;ll show you what it looks like
+              as a Vizora session.
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -463,7 +516,7 @@ export default function HomePage() {
               href="/catalog/create-catalog"
               className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
             >
-              Create catalogue
+              Join the first 10 vendors
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <a
@@ -527,19 +580,87 @@ function IconCard({ item }: { item: IconListItem }) {
   );
 }
 
-function ProcessCard({ item, step }: { item: IconListItem; step: number }) {
-  const Icon = item.Icon;
+function WorkflowStepCard({
+  step,
+  index,
+}: {
+  step: WorkflowStep;
+  index: number;
+}) {
+  const Icon = step.Icon;
 
   return (
-    <article className="border border-hairline bg-canvas p-6">
-      <div className="mb-8 flex items-center justify-between">
-        <span className="text-sm font-semibold text-muted">
-          {String(step).padStart(2, "0")}
-        </span>
-        <Icon className="h-5 w-5 text-m-blue-dark" aria-hidden="true" />
+    <article className="grid gap-px border border-hairline bg-hairline lg:grid-cols-[0.78fr_1.22fr]">
+      <div className="bg-canvas p-6 sm:p-8">
+        <div className="flex items-center justify-between gap-4">
+          <span className="text-sm font-semibold text-muted">
+            {String(index + 1).padStart(2, "0")}
+          </span>
+          <Icon className="h-5 w-5 text-m-blue-dark" aria-hidden="true" />
+        </div>
+        <p className="uppercase-label mt-8 text-muted">{step.eyebrow}</p>
+        <h3 className="mt-3 text-2xl font-semibold leading-tight text-ink">
+          {step.title}
+        </h3>
+        <p className="mt-4 text-sm leading-6 text-body">{step.body}</p>
+        <p className="mt-6 border border-hairline bg-surface-soft px-3 py-2 text-xs font-semibold text-body-strong">
+          {step.status}
+        </p>
       </div>
-      <h3 className="text-xl font-semibold leading-tight text-ink">{item.title}</h3>
-      <p className="mt-4 text-sm leading-6 text-body">{item.body}</p>
+      <div className="bg-surface-soft p-5 sm:p-6">
+        <div className="border border-hairline bg-canvas p-4">
+          <div className="flex items-center justify-between gap-4 border-b border-hairline pb-4">
+            <p className="uppercase-label text-muted">{step.previewTitle}</p>
+            <span className="h-2 w-2 bg-m-blue-dark" />
+          </div>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            {step.previewItems.map((item) => (
+              <div key={item} className="border border-hairline bg-surface-soft p-3">
+                <div className="h-12 border border-hairline bg-surface-elevated" />
+                <p className="mt-3 text-sm font-semibold text-body-strong">
+                  {item}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+function BuiltForCard({
+  item,
+}: {
+  item: {
+    title: string;
+    fit: string;
+    body: string;
+    tags: string[];
+  };
+}) {
+  return (
+    <article className="border border-hairline bg-surface-soft p-6">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="uppercase-label text-muted">{item.fit}</p>
+          <h3 className="mt-3 text-2xl font-semibold leading-tight text-ink">
+            {item.title}
+          </h3>
+        </div>
+        <Layers className="h-5 w-5 shrink-0 text-m-blue-dark" aria-hidden="true" />
+      </div>
+      <p className="mt-5 text-sm leading-6 text-body">{item.body}</p>
+      <div className="mt-6 flex flex-wrap gap-2">
+        {item.tags.map((tag) => (
+          <span
+            key={tag}
+            className="border border-hairline bg-canvas px-3 py-2 text-xs font-semibold text-body-strong"
+          >
+            {tag}
+          </span>
+        ))}
+      </div>
     </article>
   );
 }
