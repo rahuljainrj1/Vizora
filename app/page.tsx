@@ -20,7 +20,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Interactive Catalogues for Modern Showrooms",
+  title: "Digital Catalogues That Close More Showroom Sales",
   description:
     "Turn product photos into a shareable link customers can browse, compare, and revisit without the WhatsApp chaos.",
 };
@@ -178,7 +178,7 @@ export default function HomePage() {
             <span className="leading-none">
               <span className="block text-base font-semibold">Vizora</span>
               <span className="block text-[11px] text-muted">
-                Digital showrooms
+                Customer catalogue links
               </span>
             </span>
           </Link>
@@ -195,7 +195,7 @@ export default function HomePage() {
           </nav>
           <Link
             href="/catalog/create-catalog"
-            className="inline-flex h-11 items-center justify-center gap-2 border border-ink bg-ink px-4 text-[13px] font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
+            className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] border border-ink bg-ink px-4 text-[13px] font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
           >
             Join first 10
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -218,14 +218,14 @@ export default function HomePage() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/catalog/create-catalog"
-                className="inline-flex h-12 items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
               >
                 Join the first 10 vendors
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </Link>
               <a
                 href="#demo"
-                className="inline-flex h-12 items-center justify-center gap-2 border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
               >
                 <PlayCircle className="h-4 w-4" aria-hidden="true" />
                 Watch 45-sec demo
@@ -236,7 +236,7 @@ export default function HomePage() {
                 Early access
               </span>
               <span>No credit card</span>
-              <span>Built with first vendors</span>
+              <span>Launching with the first 10 vendors</span>
             </div>
           </div>
           <div className="relative min-h-[320px] overflow-hidden border border-hairline bg-surface-card sm:min-h-[420px] lg:min-h-[480px]">
@@ -282,7 +282,7 @@ export default function HomePage() {
           <SectionHeader
             eyebrow="Solution"
             title="Meet Vizora"
-            body="A digital showroom layer for physical businesses. Create beautiful product collections your customers can explore from their phones."
+            body="A better way to share your catalogue after the showroom visit."
           />
           <div className="grid gap-4 md:grid-cols-2">
             <MessagePanel
@@ -343,7 +343,7 @@ export default function HomePage() {
             <div className="mt-7 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#sample-catalog"
-                className="inline-flex h-12 items-center justify-center gap-2 border border-ink bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-[10px] border border-ink bg-ink px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-blue-dark hover:bg-m-blue-dark"
               >
                 Get sample catalog in 60 seconds
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -388,6 +388,9 @@ export default function HomePage() {
                 We have a working product, a real problem, and we&apos;re looking
                 for ten fabrication and interior vendors who want to be the first
                 batch — and help us build this right.
+              </p>
+              <p className="mt-5 border border-white/12 bg-white/[0.05] px-4 py-3 text-sm font-semibold text-white">
+                Launching with the first 10 vendors — join now.
               </p>
               <p className="mt-6 text-xl font-semibold text-white">
                 If that&apos;s you, we want to talk.
@@ -514,14 +517,14 @@ export default function HomePage() {
           <div className="flex flex-col gap-3 sm:flex-row">
             <Link
               href="/catalog/create-catalog"
-              className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
+              className="inline-flex h-12 w-fit items-center justify-center gap-2 rounded-[10px] border border-m-blue-dark bg-m-blue-dark px-6 text-sm font-semibold text-on-primary transition-colors hover:border-m-red hover:bg-m-red"
             >
               Join the first 10 vendors
               <ArrowRight className="h-4 w-4" aria-hidden="true" />
             </Link>
             <a
               href="#demo"
-              className="inline-flex h-12 w-fit items-center justify-center gap-2 border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
+              className="inline-flex h-12 w-fit items-center justify-center gap-2 rounded-[10px] border border-hairline-strong bg-surface-soft px-6 text-sm font-semibold text-ink transition-colors hover:border-ink"
             >
               <PlayCircle className="h-4 w-4" aria-hidden="true" />
               Watch demo
@@ -533,7 +536,7 @@ export default function HomePage() {
       <footer className="border-t border-hairline bg-canvas">
         <div className="mx-auto flex max-w-[1440px] flex-col gap-3 px-4 py-8 text-sm text-body sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-10">
           <p className="text-base font-semibold text-ink">Vizora</p>
-          <p>Interactive catalogues for modern showrooms.</p>
+          <p>Interactive catalogues for window and railing fabricators.</p>
         </div>
       </footer>
     </main>

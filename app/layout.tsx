@@ -17,7 +17,7 @@ const libreBaskerville = Libre_Baskerville({
 
 export const metadata: Metadata = {
   title: {
-    default: "Vizora Catalog Studio",
+    default: "Digital Catalogues That Close More Showroom Sales",
     template: "%s | Vizora",
   },
   description:
